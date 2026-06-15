@@ -221,7 +221,9 @@
   <!-- ===================== GOOGLE FONTS ===================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" /></noscript>
 
   <style>
     /* ============================================================
@@ -956,9 +958,9 @@
       </div>
       <div class="hero__video" aria-hidden="true">
         <video
-          src="hero-video.mp4"
+          data-src="hero-video.mp4"
           poster="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10011.jpg"
-          autoplay muted loop playsinline preload="auto"></video>
+          muted loop playsinline preload="none"></video>
       </div>
       <div class="hero__overlay"></div>
       <div class="hero__inner">
@@ -1026,7 +1028,7 @@
         <article class="room room--a">
           <div class="room__media">
             <div class="img-slot" data-room-img="left">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/pomodoro/10004.jpg" alt="La Camera Pomodoro: scrittoio in legno di recupero dipinto di rosso, poltroncina di design rossa e specchio dalla cornice rossa su pareti bianche" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/pomodoro/10004.jpg" alt="La Camera Pomodoro: scrittoio in legno di recupero dipinto di rosso, poltroncina di design rossa e specchio dalla cornice rossa su pareti bianche" data-img-parallax loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="room__text" data-room-text>
@@ -1040,7 +1042,7 @@
         <article class="room room--b room--reverse">
           <div class="room__media">
             <div class="img-slot" data-room-img="right">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/mandarino/10006.jpg" alt="La Camera Mandarino: colonna e nicchia color arancio, opera d'arte geometrica, travi bianche a vista e letto con testiera in legno" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/mandarino/10006.jpg" alt="La Camera Mandarino: colonna e nicchia color arancio, opera d'arte geometrica, travi bianche a vista e letto con testiera in legno" data-img-parallax loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="room__text" data-room-text>
@@ -1054,7 +1056,7 @@
         <article class="room room--c">
           <div class="room__media">
             <div class="img-slot" data-room-img="left">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/lampone/10011.jpg" alt="La Suite Lampone: letto con cuscini color lampone, parete fucsia, armadio aperto in legno di recupero e seduta di design bianca" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/lampone/10011.jpg" alt="La Suite Lampone: letto con cuscini color lampone, parete fucsia, armadio aperto in legno di recupero e seduta di design bianca" data-img-parallax loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="room__text" data-room-text>
@@ -1068,7 +1070,7 @@
         <article class="room room--d room--reverse">
           <div class="room__media">
             <div class="img-slot" data-room-img="right">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/giallo_zucca/10009.jpg" alt="La Camera Giallo Zucca: parete color zucca, armadio vintage in legno, letto bianco, comodini arancioni e opera d'arte geometrica" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/giallo_zucca/10009.jpg" alt="La Camera Giallo Zucca: parete color zucca, armadio vintage in legno, letto bianco, comodini arancioni e opera d'arte geometrica" data-img-parallax loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="room__text" data-room-text>
@@ -1082,7 +1084,7 @@
         <article class="room room--e">
           <div class="room__media">
             <div class="img-slot" data-room-img="left">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/melanzana/10003.jpg" alt="La Camera Melanzana: letto con copriletto verde acqua, opere d'arte dalle cornici viola melanzana, nicchia color melanzana e travi bianche a vista" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/melanzana/10003.jpg" alt="La Camera Melanzana: letto con copriletto verde acqua, opere d'arte dalle cornici viola melanzana, nicchia color melanzana e travi bianche a vista" data-img-parallax loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="room__text" data-room-text>
@@ -1096,7 +1098,7 @@
         <article class="room room--f room--reverse">
           <div class="room__media">
             <div class="img-slot" data-room-img="right">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/mela_verde/10008.jpg" alt="La Camera Mela Verde: letto bianco, divano e parete color verde mela, panca e arredi in legno di recupero, lampada verde" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/mela_verde/10008.jpg" alt="La Camera Mela Verde: letto bianco, divano e parete color verde mela, panca e arredi in legno di recupero, lampada verde" data-img-parallax loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="room__text" data-room-text>
@@ -1110,7 +1112,7 @@
         <article class="room room--g">
           <div class="room__media">
             <div class="img-slot" data-room-img="left">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/zucca/10003.jpg" alt="La Camera Zucca: scrittoio con gambe gialle, sedute di design, opera d'arte blu e arancio e letto con copriletto verde acqua sotto le travi bianche" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/zucca/10003.jpg" alt="La Camera Zucca: scrittoio con gambe gialle, sedute di design, opera d'arte blu e arancio e letto con copriletto verde acqua sotto le travi bianche" data-img-parallax loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="room__text" data-room-text>
@@ -1124,7 +1126,7 @@
         <article class="room room--h room--reverse">
           <div class="room__media">
             <div class="img-slot" data-room-img="right">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/country/10009.jpg" alt="Il Loft Country: appartamento rustico con soppalco, soffitto a travi di legno, angolo cottura, salotto e scala in legno e ferro" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/country/10009.jpg" alt="Il Loft Country: appartamento rustico con soppalco, soffitto a travi di legno, angolo cottura, salotto e scala in legno e ferro" data-img-parallax loading="lazy" decoding="async" />
             </div>
           </div>
           <div class="room__text" data-room-text>
@@ -1147,31 +1149,31 @@
         <div class="gallery__track" id="galleryTrack">
           <figure class="gallery__item">
             <div class="img-slot">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10012.jpg" alt="Un cavallo bianco nel recinto al crepuscolo" loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10012.jpg" alt="Un cavallo bianco nel recinto al crepuscolo" loading="lazy" decoding="async" />
             </div>
             <figcaption class="gallery__cap">Al pascolo · Crepuscolo</figcaption>
           </figure>
           <figure class="gallery__item">
             <div class="img-slot">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10010.jpg" alt="Un daino curioso si avvicina al recinto nella campagna" loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10010.jpg" alt="Un daino curioso si avvicina al recinto nella campagna" loading="lazy" decoding="async" />
             </div>
             <figcaption class="gallery__cap">Daini · Bosco della Fontana</figcaption>
           </figure>
           <figure class="gallery__item">
             <div class="img-slot">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10017.jpg" alt="Sentiero del giardino con tavolino e luce filtrata tra le foglie" loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10017.jpg" alt="Sentiero del giardino con tavolino e luce filtrata tra le foglie" loading="lazy" decoding="async" />
             </div>
             <figcaption class="gallery__cap">Il giardino · Tra le foglie</figcaption>
           </figure>
           <figure class="gallery__item">
             <div class="img-slot">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10015.jpg" alt="Salotto in giardino con luci scintillanti al calar della sera" loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10015.jpg" alt="Salotto in giardino con luci scintillanti al calar della sera" loading="lazy" decoding="async" />
             </div>
             <figcaption class="gallery__cap">Aperitivo in corte · Sera</figcaption>
           </figure>
           <figure class="gallery__item">
             <div class="img-slot">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10013.jpg" alt="La scritta Beatilla dipinta sul timpano della vecchia cascina" loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10013.jpg" alt="La scritta Beatilla dipinta sul timpano della vecchia cascina" loading="lazy" decoding="async" />
             </div>
             <figcaption class="gallery__cap">La cascina · Beatilla</figcaption>
           </figure>
@@ -1193,7 +1195,7 @@
           </div>
           <div class="dining__media">
             <div class="img-slot" data-clip-up>
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10007.jpg" alt="La sala da pranzo luminosa e colorata di Beatilla, con grandi finestre ad arco" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10007.jpg" alt="La sala da pranzo luminosa e colorata di Beatilla, con grandi finestre ad arco" data-img-parallax loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -1232,21 +1234,21 @@
         <div class="exp__grid">
           <article class="exp__card" data-card>
             <div class="img-slot">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10014.jpg" alt="Ospiti rilassati in giardino tra le luci della sera, con un calice di vino" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10014.jpg" alt="Ospiti rilassati in giardino tra le luci della sera, con un calice di vino" data-img-parallax loading="lazy" decoding="async" />
             </div>
             <span class="label cat">Al tramonto</span>
             <h3>Aperitivo in corte</h3>
           </article>
           <article class="exp__card" data-card>
             <div class="img-slot">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10016.jpg" alt="Un angolo rustico della cascina con persiane turchesi, una vecchia stufa in smalto e piante, immerso nella luce del pomeriggio" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10016.jpg" alt="Un angolo rustico della cascina con persiane turchesi, una vecchia stufa in smalto e piante, immerso nella luce del pomeriggio" data-img-parallax loading="lazy" decoding="async" />
             </div>
             <span class="label cat">All'aria aperta</span>
             <h3>Angoli di campagna</h3>
           </article>
           <article class="exp__card" data-card>
             <div class="img-slot">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10006.jpg" alt="La lavagna della colazione di Beatilla: «Breakfast at Beatilla — Latte o Caffé? Pane o torta?» con disegni a gesso" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10006.jpg" alt="La lavagna della colazione di Beatilla: «Breakfast at Beatilla — Latte o Caffé? Pane o torta?» con disegni a gesso" data-img-parallax loading="lazy" decoding="async" />
             </div>
             <span class="label cat">Fatto in casa</span>
             <h3>La colazione di Beatilla</h3>
@@ -1360,7 +1362,7 @@
           </div>
           <div class="workshop__media">
             <div class="img-slot">
-              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10013.jpg" alt="L'artista Luca Bornoffi al lavoro nello studio d'arte tra tele e colori" data-img-parallax loading="lazy" />
+              <img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10013.jpg" alt="L'artista Luca Bornoffi al lavoro nello studio d'arte tra tele e colori" data-img-parallax loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
@@ -1473,37 +1475,37 @@
         </div>
         <div class="visit__grid">
           <article class="visit__card" data-card>
-            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/mantova.png" alt="Lo skyline di Mantova illuminato al tramonto, riflesso sui laghi" data-img-parallax loading="lazy" /></div>
+            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/mantova.png" alt="Lo skyline di Mantova illuminato al tramonto, riflesso sui laghi" data-img-parallax loading="lazy" decoding="async" /></div>
             <span class="visit__tag">5 km · 5 min</span>
             <h3>Mantova</h3>
             <p>Il Palazzo Ducale con la Camera degli Sposi del Mantegna, Palazzo Te, Piazza delle Erbe, la Rotonda di San Lorenzo e la Basilica di Sant'Andrea: un museo a cielo aperto.</p>
           </article>
           <article class="visit__card" data-card>
-            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/bosco-fontana.png" alt="La palazzina di caccia gonzaghesca nel cuore del Bosco della Fontana" data-img-parallax loading="lazy" /></div>
+            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/bosco-fontana.png" alt="La palazzina di caccia gonzaghesca nel cuore del Bosco della Fontana" data-img-parallax loading="lazy" decoding="async" /></div>
             <span class="visit__tag">A piedi</span>
             <h3>Bosco della Fontana</h3>
             <p>La più grande foresta della Pianura Padana, con il castello cinquecentesco riserva di caccia dei Gonzaga. Ci si arriva direttamente a piedi dall'agriturismo.</p>
           </article>
           <article class="visit__card" data-card>
-            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/borghetto-mincio.png" alt="Gli antichi mulini ad acqua di Borghetto sul Mincio affacciati sul fiume" data-img-parallax loading="lazy" /></div>
+            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/borghetto-mincio.png" alt="Gli antichi mulini ad acqua di Borghetto sul Mincio affacciati sul fiume" data-img-parallax loading="lazy" decoding="async" /></div>
             <span class="visit__tag">~20 min</span>
             <h3>Borghetto sul Mincio</h3>
             <p>Uno dei borghi più antichi d'Italia, tra mulini ad acqua e scorci sul fiume, alle porte di Valeggio sul Mincio.</p>
           </article>
           <article class="visit__card" data-card>
-            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/sirmione.png" alt="La penisola di Sirmione con il castello scaligero sul Lago di Garda" data-img-parallax loading="lazy" /></div>
+            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/sirmione.png" alt="La penisola di Sirmione con il castello scaligero sul Lago di Garda" data-img-parallax loading="lazy" decoding="async" /></div>
             <span class="visit__tag">~30 min</span>
             <h3>Sirmione</h3>
             <p>La perla del Garda: il castello scaligero, le Grotte di Catullo e le terme su una stretta penisola che si protende nel lago.</p>
           </article>
           <article class="visit__card" data-card>
-            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/peschiera.png" alt="I canali e le mura fortificate di Peschiera del Garda" data-img-parallax loading="lazy" /></div>
+            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/peschiera.png" alt="I canali e le mura fortificate di Peschiera del Garda" data-img-parallax loading="lazy" decoding="async" /></div>
             <span class="visit__tag">~25 min</span>
             <h3>Peschiera del Garda</h3>
             <p>Cittadina fortificata Patrimonio UNESCO sulla sponda sud del lago, con canali, bastioni veneziani e un porticciolo pittoresco.</p>
           </article>
           <article class="visit__card" data-card>
-            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/parco-sigurta.png" alt="Le fioriture e i giardini del Parco Giardino Sigurtà a Valeggio sul Mincio" data-img-parallax loading="lazy" /></div>
+            <div class="img-slot"><img src="Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/cosa_visitare/parco-sigurta.png" alt="Le fioriture e i giardini del Parco Giardino Sigurtà a Valeggio sul Mincio" data-img-parallax loading="lazy" decoding="async" /></div>
             <span class="visit__tag">~25 min</span>
             <h3>Parco Sigurtà</h3>
             <p>Tra i parchi più belli d'Europa: distese di tulipani, laghetti e giardini fioriti a Valeggio sul Mincio, perfetti per una giornata nel verde.</p>
@@ -1586,7 +1588,7 @@
         <iframe
           src="https://maps.google.com/maps?q=45.200963,10.761172&z=15&output=embed"
           title="Mappa · Agriturismo Beatilla, Corte Barco, Marmirolo (MN)"
-          loading="lazy"
+          loading="lazy" decoding="async"
           referrerpolicy="no-referrer-when-downgrade"
           allowfullscreen></iframe>
       </div>
@@ -1676,6 +1678,18 @@
   (function () {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+    /* ---------- Hero video: load only on desktop (saves ~7MB on mobile) ---------- */
+    (() => {
+      const v = document.querySelector('.hero__video video');
+      if (!v || isMobile() || prefersReduced) return;
+      const src = v.getAttribute('data-src');
+      if (!src) return;
+      v.setAttribute('src', src);
+      v.load();
+      const play = () => v.play().catch(() => {});
+      if (v.readyState >= 2) play(); else v.addEventListener('canplay', play, { once: true });
+    })();
 
     /* ---------- NAV: solid on scroll ---------- */
     const nav = document.getElementById('nav');
