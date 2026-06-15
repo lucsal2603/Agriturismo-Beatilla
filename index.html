@@ -617,8 +617,12 @@
     }
 
     @media (max-width: 768px) {
+      /* Spaziatura sezioni più compatta su telefono: si vede più contenuto senza vuoti eccessivi */
+      :root { --section-y: clamp(3rem, 9vh, 5.5rem); }
       .nav__links { display: none; }
-      .nav__toggle { display: inline-flex; }
+      .nav__toggle { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+      /* Aree di tocco adeguate (min 44px) per i link "Scopri" */
+      .link-more { min-height: 44px; }
       .exp__grid { grid-template-columns: 1fr; }
       .services__grid { grid-template-columns: 1fr; }
       .visit__grid { grid-template-columns: 1fr; }
