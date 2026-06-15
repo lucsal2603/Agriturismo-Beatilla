@@ -819,6 +819,12 @@
       .service__icon { width: 26px; height: 26px; margin-top: 0; }
       .service h3 { font-size: 1.12rem; }
       .service p { font-size: .85rem; line-height: 1.5; }
+      /* Rassegna stampa: due recensioni per riga invece che impilate, con titoli più compatti */
+      .press__grid { grid-template-columns: repeat(2, 1fr); gap: 1.6rem 1.1rem; }
+      .press__item { padding: 1.3rem 0; }
+      .press__meta { gap: .5rem; margin-bottom: .6rem; }
+      .press__title { font-size: 1.08rem; margin-bottom: .5rem; }
+      .press__author { font-size: .82rem; margin-bottom: .7rem; }
       .visit__grid { grid-template-columns: 1fr; }
       .stats__grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .stats__divider { display: none; }
