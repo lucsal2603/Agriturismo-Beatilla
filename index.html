@@ -347,11 +347,17 @@
     .nav.scrolled .nav__cta:hover { background: var(--text); color: var(--bg); }
     .nav:not(.scrolled) .nav__cta:hover { background: var(--white); color: var(--text); }
 
-    .nav__toggle { display: none; background: none; border: none; color: inherit; padding: .5rem; margin: -.5rem; }
-    .nav__toggle svg { width: 26px; height: 26px; display: block; }
-    .nav__toggle .nav__toggle-close { display: none; } /* specificità 0,2,0: batte ".nav__toggle svg", così la X resta nascosta a menu chiuso */
-    body.menu-open .nav__toggle-open { display: none; }
-    body.menu-open .nav__toggle-close { display: block; }
+    .nav__toggle { display: none; background: none; border: none; color: inherit; padding: .5rem; margin: -.5rem; cursor: pointer; }
+    /* Icona a tre barre che si trasforma in X con una piccola animazione fluida */
+    .nav__toggle-box { position: relative; display: block; width: 24px; height: 16px; }
+    .nav__toggle-bar { position: absolute; left: 0; width: 100%; height: 1.6px; background: currentColor; border-radius: 2px;
+      transition: transform .4s var(--ease), opacity .25s var(--ease), top .4s var(--ease); }
+    .nav__toggle-bar:nth-child(1) { top: 0; }
+    .nav__toggle-bar:nth-child(2) { top: 50%; transform: translateY(-50%); }
+    .nav__toggle-bar:nth-child(3) { top: 100%; transform: translateY(-100%); }
+    body.menu-open .nav__toggle-bar:nth-child(1) { top: 50%; transform: translateY(-50%) rotate(45deg); }
+    body.menu-open .nav__toggle-bar:nth-child(2) { opacity: 0; transform: translateY(-50%) scaleX(.2); }
+    body.menu-open .nav__toggle-bar:nth-child(3) { top: 50%; transform: translateY(-50%) rotate(-45deg); }
     body.menu-open .nav { color: var(--text); }
 
     /* Mobile menu overlay */
@@ -805,7 +811,12 @@
       /* Aree di tocco adeguate (min 44px) per i link "Scopri" */
       .link-more { min-height: 44px; }
       .exp__grid { grid-template-columns: 1fr; }
-      .services__grid { grid-template-columns: 1fr; }
+      /* Servizi: due per riga invece che impilati, icona sopra e testo sotto per stare comodi nelle colonne strette */
+      .services__grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem 1rem; }
+      .service { flex-direction: column; gap: .55rem; padding: 1.2rem 0; }
+      .service__icon { width: 26px; height: 26px; margin-top: 0; }
+      .service h3 { font-size: 1.12rem; }
+      .service p { font-size: .85rem; line-height: 1.5; }
       .visit__grid { grid-template-columns: 1fr; }
       .stats__grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .stats__divider { display: none; }
@@ -815,6 +826,19 @@
       .gallery__track { flex-direction: row; width: max-content; transform: none; padding-inline: 0; gap: 1rem; align-items: center; animation: gallery-marquee 34s linear infinite; }
       .gallery__item { width: 60vw; max-width: 240px; margin: 0; }
       .gallery__item .img-slot { width: 100%; height: auto; aspect-ratio: 2 / 3; }
+      /* Immagine full-bleed "Beatilla" sotto l'artista: su telefono mostrala per intero invece di ritagliarla */
+      .video { height: auto; min-height: 0; }
+      .video .img-slot { position: static; }
+      .video .img-slot > img,
+      .video .img-slot > img[data-img-parallax] {
+        position: static; inset: auto;
+        width: 100%; height: auto;
+        object-fit: contain;
+      }
+      .video .img-slot > img { object-position: center center; }
+      .video .img-slot::after { display: none; }
+      /* Niente parallax interno sulle altre immagini su telefono: evita scatti e blocchi durante lo scroll */
+      .img-slot > img[data-img-parallax] { height: 100%; top: 0; }
     }
 
     /* Reduced motion */
@@ -845,8 +869,11 @@
       <a class="nav__cta" href="https://wubook.net/nneb/bk/?ep=efbd0f20&board=bb&o=2.0.0.0&c=EUR&lang=it" target="_blank" rel="noopener">Prenota</a>
     </nav>
     <button class="nav__toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false" aria-controls="navOverlay">
-      <svg class="nav__toggle-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      <svg class="nav__toggle-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      <span class="nav__toggle-box" aria-hidden="true">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </span>
     </button>
   </header>
 
@@ -1707,7 +1734,7 @@
 
     /* ---------- IMAGE BREAK parallax ---------- */
     gsap.utils.toArray('[data-parallax]').forEach((el) => {
-      if (prefersReduced) return;
+      if (prefersReduced || isMobile()) return; /* su telefono niente parallax scrub: lo scroll resta fluido */
       gsap.fromTo(el, { yPercent: -18 }, {
         yPercent: 18, ease: 'none',
         scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
@@ -1890,7 +1917,7 @@
 
     /* ---------- INNER-IMAGE PARALLAX (depth) ---------- */
     gsap.utils.toArray('[data-img-parallax]').forEach((img) => {
-      if (prefersReduced) return;
+      if (prefersReduced || isMobile()) return; /* su telefono niente drift interno: evita scatti e blocchi durante lo scroll */
       if (img.closest('.room__media, .workshop__media')) return; /* camere e workshop restano interi: niente drift verticale che li ritaglierebbe */
       gsap.fromTo(img, { yPercent: -8 }, {
         yPercent: 8, ease: 'none',
@@ -1923,8 +1950,12 @@
       scrollTrigger: { trigger: '.footer', start: 'top 92%' }
     });
 
-    /* Recalculate on resize / after images load for pinned/scrub triggers */
-    window.addEventListener('load', () => ScrollTrigger.refresh());
+    /* Recalculate on resize / after images load for pinned/scrub triggers.
+       Dopo il refresh riporto sempre la pagina in cima: così un reload riparte dall'hero col video,
+       non da metà pagina (es. le Camere). Gestisco anche il ritorno dalla bfcache con "pageshow". */
+    const toTop = () => window.scrollTo(0, 0);
+    window.addEventListener('load', () => { ScrollTrigger.refresh(); toTop(); });
+    window.addEventListener('pageshow', toTop);
     document.querySelectorAll('img').forEach((img) => {
       if (!img.complete) img.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
     });
