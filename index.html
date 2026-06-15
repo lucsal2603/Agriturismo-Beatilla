@@ -427,6 +427,15 @@
     .workshop__grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
     .workshop__media { overflow: hidden; }
     .workshop__media .img-slot { width: 100%; aspect-ratio: 16 / 10; }
+    /* Art Workshop: mostra la foto per intero — proporzioni reali, niente ritaglio né zoom */
+    .workshop__media .img-slot { aspect-ratio: auto; background: transparent; }
+    .workshop__media .img-slot > img,
+    .workshop__media .img-slot > img[data-img-parallax] {
+      position: static; inset: auto;
+      width: 100%; height: auto;
+      object-fit: contain;
+    }
+    .workshop__media .img-slot::after { display: none; }
     .workshop__text h2 { font-size: clamp(2.4rem, 5vw, 4rem); margin: 1rem 0 1.8rem; }
     .workshop__text p { color: rgba(26,26,24,.72); margin-bottom: 1.2rem; max-width: 50ch; line-height: 1.7; }
     .workshop__note { font-size: .9rem; color: rgba(26,26,24,.55); }
@@ -1673,7 +1682,7 @@
     /* ---------- INNER-IMAGE PARALLAX (depth) ---------- */
     gsap.utils.toArray('[data-img-parallax]').forEach((img) => {
       if (prefersReduced) return;
-      if (img.closest('.room__media')) return; /* le camere restano intere: niente drift verticale che le ritaglierebbe */
+      if (img.closest('.room__media, .workshop__media')) return; /* camere e workshop restano interi: niente drift verticale che li ritaglierebbe */
       gsap.fromTo(img, { yPercent: -8 }, {
         yPercent: 8, ease: 'none',
         scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true }
