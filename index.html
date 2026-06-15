@@ -349,7 +349,7 @@
 
     .nav__toggle { display: none; background: none; border: none; color: inherit; padding: .5rem; margin: -.5rem; }
     .nav__toggle svg { width: 26px; height: 26px; display: block; }
-    .nav__toggle-close { display: none; }
+    .nav__toggle .nav__toggle-close { display: none; } /* specificità 0,2,0: batte ".nav__toggle svg", così la X resta nascosta a menu chiuso */
     body.menu-open .nav__toggle-open { display: none; }
     body.menu-open .nav__toggle-close { display: block; }
     body.menu-open .nav { color: var(--text); }
