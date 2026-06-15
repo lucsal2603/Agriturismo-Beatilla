@@ -822,8 +822,9 @@
       .stats__divider { display: none; }
       /* horizontal gallery -> vertical stack */
       /* La vita in campagna: striscia che scorre in loop invece di impilare le foto in verticale */
-      .gallery__pin { position: static; height: auto; display: block; padding-block: 1.5rem; overflow: hidden; }
-      .gallery__track { flex-direction: row; width: max-content; transform: none; padding-inline: 0; gap: 1rem; align-items: center; animation: gallery-marquee 34s linear infinite; }
+      .gallery__pin { position: static; height: auto; display: block; padding-block: 1.5rem; overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; scrollbar-width: none; }
+      .gallery__pin::-webkit-scrollbar { display: none; }
+      .gallery__track { flex-direction: row; width: max-content; transform: none; padding-inline: 0; gap: 1rem; align-items: center; }
       .gallery__item { width: 60vw; max-width: 240px; margin: 0; }
       .gallery__item .img-slot { width: 100%; height: auto; aspect-ratio: 2 / 3; }
       /* Immagine full-bleed "Beatilla" sotto l'artista: su telefono mostrala per intero invece di ritagliarla */
@@ -1794,25 +1795,47 @@
           invalidateOnRefresh: true
         }
       });
-    } else if (track && isMobile() && !prefersReduced) {
-      /* MOBILE: striscia in loop continuo (marquee). Duplico le foto per un loop senza stacchi e
-         calcolo lo scorrimento esatto di un set, così il punto di ricongiunzione è invisibile. */
+    } else if (track && pin && isMobile() && !prefersReduced) {
+      /* MOBILE: striscia che scorre da sola MA che si può anche trascinare/scorrere a dito.
+         Uso lo scroll nativo del contenitore (.gallery__pin): triplico le foto (un set prima,
+         gli originali, un set dopo) così il loop è infinito in entrambe le direzioni; un rAF
+         incrementa scrollLeft per il movimento automatico, che si mette in pausa appena tocchi. */
       const originals = Array.from(track.children);
-      originals.forEach((it) => {
-        const clone = it.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        track.appendChild(clone);
-      });
-      const setShift = () => {
-        const firstClone = track.children[originals.length];
-        if (firstClone) {
-          const shift = firstClone.offsetLeft - track.children[0].offsetLeft;
-          track.style.setProperty('--marquee-shift', shift + 'px');
-        }
+      const firstOriginal = originals[0];
+      originals.forEach((it) => { const c = it.cloneNode(true); c.setAttribute('aria-hidden', 'true'); track.appendChild(c); });        // set dopo
+      originals.forEach((it) => { const c = it.cloneNode(true); c.setAttribute('aria-hidden', 'true'); track.insertBefore(c, firstOriginal); }); // set prima
+
+      let setWidth = 0, userTouched = false;
+      const measure = () => {
+        const w = firstOriginal.offsetLeft - track.children[0].offsetLeft;
+        if (w > 0) { setWidth = w; if (!userTouched) pin.scrollLeft = setWidth; } // parti sugli originali; ricentra finché l'utente non interviene (font/immagini cambiano le misure)
       };
-      setShift();
-      window.addEventListener('resize', setShift);
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(setShift);
+      measure();
+      window.addEventListener('resize', measure);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+      /* Riporta lo scroll dentro l'intervallo centrale: loop senza stacchi, sia auto sia a dito */
+      const wrap = () => {
+        if (setWidth <= 0) return;
+        if (pin.scrollLeft >= setWidth * 2) pin.scrollLeft -= setWidth;
+        else if (pin.scrollLeft < setWidth) pin.scrollLeft += setWidth;
+      };
+      pin.addEventListener('scroll', wrap, { passive: true });
+
+      /* Pausa l'auto-scroll quando l'utente interagisce, riprende dopo qualche secondo di quiete */
+      let paused = false, resumeT;
+      const pauseAuto = () => { userTouched = true; paused = true; clearTimeout(resumeT); resumeT = setTimeout(() => { paused = false; }, 3000); };
+      ['pointerdown', 'touchstart', 'wheel'].forEach((ev) => pin.addEventListener(ev, pauseAuto, { passive: true }));
+
+      const SPEED = 0.45; // px per frame: scorrimento lento e riposante
+      const tick = () => {
+        if (!paused && setWidth > 0) {
+          pin.scrollLeft += SPEED;
+          if (pin.scrollLeft >= setWidth * 2) pin.scrollLeft -= setWidth;
+        }
+        requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
     }
 
     /* ---------- RISTORANTE: image clip reveal from bottom + text ---------- */
