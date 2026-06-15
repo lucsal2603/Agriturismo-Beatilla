@@ -73,7 +73,8 @@
         "inLanguage": "it-IT",
         "isPartOf": { "@id": "https://www.agriturismobeatilla.it/#website" },
         "about": { "@id": "https://www.agriturismobeatilla.it/#agriturismo" },
-        "primaryImageOfPage": "https://www.agriturismobeatilla.it/Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10011.jpg"
+        "primaryImageOfPage": "https://www.agriturismobeatilla.it/Photogallery_Agriturismo_Art-Design_Mantova_per_Famiglie/10011.jpg",
+        "dateModified": "2026-06-15"
       },
       {
         "@type": "LodgingBusiness",
@@ -134,13 +135,42 @@
             "name": "Art Workshop",
             "description": "Esperienza di pittura nello studio dell'artista Luca Bornoffi: colori, pennelli e tela inclusi; l'opera realizzata resta all'ospite."
           }
+        },
+        "slogan": "Mi casa es tu casa",
+        "amenityFeature": [
+          { "@type": "LocationFeatureSpecification", "name": "Wi-Fi gratuito", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Parcheggio gratuito", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Colazione", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Macchina del caffè in camera", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Appartamenti attrezzati con angolo cottura", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Lettini per bambini", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Giardino con area giochi", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Noleggio biciclette", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Sala lettura", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Servizio concierge", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Yoga all'aperto", "value": true },
+          { "@type": "LocationFeatureSpecification", "name": "Visita della fattoria", "value": true }
+        ],
+        "potentialAction": {
+          "@type": "ReserveAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://wubook.net/nneb/bk/?ep=efbd0f20&board=bb&o=2.0.0.0&c=EUR&lang=it",
+            "inLanguage": "it-IT",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": { "@type": "LodgingReservation", "name": "Prenotazione camera" }
         }
       },
       {
         "@type": "Restaurant",
         "@id": "https://www.agriturismobeatilla.it/#ristorante",
         "name": "Ristorante Corte Barco · Agriturismo Beatilla",
-        "servesCuisine": "Cucina del territorio mantovano",
+        "servesCuisine": ["Cucina mantovana", "Cucina italiana"],
+        "acceptsReservations": "True",
         "telephone": "+393392226468",
         "priceRange": "€€",
         "url": "https://www.agriturismobeatilla.it/",
