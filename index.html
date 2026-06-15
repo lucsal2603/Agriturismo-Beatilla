@@ -325,6 +325,15 @@
     .room--f .img-slot { aspect-ratio: 16 / 11; }
     .room--g .img-slot { aspect-ratio: 16 / 11; }
     .room--h .img-slot { aspect-ratio: 16 / 11; }
+    /* Camere: mostra la foto per intero — il riquadro segue le proporzioni reali, niente ritaglio né zoom */
+    .rooms .room__media .img-slot { aspect-ratio: auto; background: transparent; }
+    .rooms .room__media .img-slot > img,
+    .rooms .room__media .img-slot > img[data-img-parallax] {
+      position: static; inset: auto;
+      width: 100%; height: auto;
+      object-fit: contain;
+    }
+    .rooms .room__media .img-slot::after { display: none; }
     .room__num { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--accent); }
     .room__title { font-size: clamp(2rem, 4vw, 3.1rem); margin: .6rem 0 1.2rem; }
     .room__desc { color: rgba(26,26,24,.7); max-width: 40ch; margin-bottom: 1.6rem; }
@@ -1641,6 +1650,7 @@
     /* ---------- INNER-IMAGE PARALLAX (depth) ---------- */
     gsap.utils.toArray('[data-img-parallax]').forEach((img) => {
       if (prefersReduced) return;
+      if (img.closest('.room__media')) return; /* le camere restano intere: niente drift verticale che le ritaglierebbe */
       gsap.fromTo(img, { yPercent: -8 }, {
         yPercent: 8, ease: 'none',
         scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: true }
