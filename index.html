@@ -1822,10 +1822,19 @@
       };
       pin.addEventListener('scroll', wrap, { passive: true });
 
-      /* Pausa l'auto-scroll quando l'utente interagisce, riprende dopo qualche secondo di quiete */
+      /* Pausa l'auto-scroll SOLO se l'utente interagisce in orizzontale con la galleria;
+         lo scroll verticale della pagina (sopra la galleria) non deve fermare l'animazione. */
       let paused = false, resumeT;
-      const pauseAuto = () => { userTouched = true; paused = true; clearTimeout(resumeT); resumeT = setTimeout(() => { paused = false; }, 3000); };
-      ['pointerdown', 'touchstart', 'wheel'].forEach((ev) => pin.addEventListener(ev, pauseAuto, { passive: true }));
+      const pauseAuto = () => { userTouched = true; paused = true; clearTimeout(resumeT); resumeT = setTimeout(() => { paused = false; }, 2000); };
+      let tsx = 0, tsy = 0, dir = 0; // dir: 0 indeciso, 1 orizzontale, -1 verticale
+      pin.addEventListener('touchstart', (e) => { const t = e.touches[0]; tsx = t.clientX; tsy = t.clientY; dir = 0; }, { passive: true });
+      pin.addEventListener('touchmove', (e) => {
+        if (dir === 1) { pauseAuto(); return; }
+        if (dir === -1) return; // gesto verticale: è scroll di pagina, non fermare l'animazione
+        const t = e.touches[0]; const dx = Math.abs(t.clientX - tsx), dy = Math.abs(t.clientY - tsy);
+        if (dx > 8 || dy > 8) { dir = dx > dy ? 1 : -1; if (dir === 1) pauseAuto(); }
+      }, { passive: true });
+      pin.addEventListener('wheel', (e) => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) pauseAuto(); }, { passive: true }); // solo trackpad/scroll orizzontale
 
       const SPEED = 0.45; // px per frame: scorrimento lento e riposante
       const tick = () => {
