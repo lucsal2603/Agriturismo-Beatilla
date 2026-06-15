@@ -213,6 +213,53 @@
           "longitude": 10.761172
         },
         "isPartOf": { "@id": "https://www.agriturismobeatilla.it/#agriturismo" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.agriturismobeatilla.it/#faq",
+        "isPartOf": { "@id": "https://www.agriturismobeatilla.it/#webpage" },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "A che ora sono il check-in e il check-out?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Il check-in si effettua dalle 15:00, mentre il check-out è fino alle 10:00. Arrivate in orari diversi? Scriveteci o chiamateci in anticipo: troveremo sempre una soluzione per accogliervi con calma." }
+          },
+          {
+            "@type": "Question",
+            "name": "La colazione è inclusa?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sì. Ogni mattina vi aspetta la nostra «Breakfast at Beatilla»: torte fatte in casa, pane fresco, marmellate e prodotti del territorio, serviti nella sala luminosa o in giardino quando il tempo lo permette." }
+          },
+          {
+            "@type": "Question",
+            "name": "C'è il parcheggio?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sì. Il parcheggio privato è disponibile gratuitamente in loco e non necessita di prenotazione. C'è spazio comodo per auto, moto e biciclette." }
+          },
+          {
+            "@type": "Question",
+            "name": "Il ristorante è aperto anche a chi non alloggia?",
+            "acceptedAnswer": { "@type": "Answer", "text": "La nostra cucina mantovana è aperta su prenotazione. Vi consigliamo di chiamarci in anticipo per riservare il tavolo e raccontarci eventuali esigenze o intolleranze." }
+          },
+          {
+            "@type": "Question",
+            "name": "È adatto a famiglie con bambini?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Assolutamente sì. Disponiamo di lettini per i più piccoli, di un giardino con area giochi e di tanto spazio all'aperto. La fattoria e gli animali sono sempre un'attrazione per i bambini." }
+          },
+          {
+            "@type": "Question",
+            "name": "Sono ammessi gli animali domestici?",
+            "acceptedAnswer": { "@type": "Answer", "text": "I vostri amici a quattro zampe sono benvenuti. Vi chiediamo solo di segnalarcelo al momento della prenotazione, così da preparare al meglio la vostra sistemazione." }
+          },
+          {
+            "@type": "Question",
+            "name": "Dove si trova Beatilla e quanto dista dalle città?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Siamo a soli 2,2 km dal centro di Marmirolo e a 5 km dal centro storico di Mantova (circa 5 minuti). Il Lago di Garda dista 25 km (circa 30 minuti). Una posizione ideale per visitare la città d'arte e rilassarsi in campagna." }
+          },
+          {
+            "@type": "Question",
+            "name": "Noleggiate biciclette?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sì, mettiamo a disposizione delle biciclette per esplorare le campagne, il Bosco della Fontana e le piste ciclabili che conducono fino a Mantova." }
+          }
+        ]
       }
     ]
   }
@@ -833,6 +880,39 @@
     .distances__item { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .9rem 0; border-bottom: 1px solid rgba(26,26,24,.14); }
     .distances__place { font-size: 1.02rem; }
     .distances__val { font-family: var(--serif); font-style: italic; color: var(--accent); white-space: nowrap; }
+
+    /* ============================================================
+       12b. FAQ
+       ============================================================ */
+    .faq { padding-block: var(--section-y); }
+    .faq .container { max-width: 880px; }
+    .faq__head { text-align: center; margin-bottom: clamp(2.5rem, 6vh, 4rem); }
+    .faq__head h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin-top: 1rem; }
+    .faq__list { border-top: 1px solid rgba(26,26,24,.14); }
+    .faq__item { border-bottom: 1px solid rgba(26,26,24,.14); }
+    .faq__q {
+      list-style: none; cursor: pointer; display: flex; align-items: center;
+      justify-content: space-between; gap: 1.5rem; padding: 1.5rem 0;
+      font-family: var(--serif); font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+      line-height: 1.3; color: var(--text); transition: color .3s var(--ease);
+    }
+    .faq__q::-webkit-details-marker { display: none; }
+    .faq__q:hover { color: var(--accent); }
+    .faq__icon { flex: none; width: 20px; height: 20px; position: relative; }
+    .faq__icon::before, .faq__icon::after {
+      content: ''; position: absolute; background: var(--accent);
+      transition: transform .4s var(--ease), opacity .3s var(--ease);
+    }
+    .faq__icon::before { top: 50%; left: 0; width: 100%; height: 1.5px; transform: translateY(-50%); }
+    .faq__icon::after { left: 50%; top: 0; width: 1.5px; height: 100%; transform: translateX(-50%); }
+    .faq__item[open] .faq__icon::after { transform: translateX(-50%) scaleY(0); opacity: 0; }
+    .faq__item:not([open]) .faq__a { display: none; }
+    .faq__a p { padding: 0 2.5rem 1.7rem 0; max-width: 66ch; line-height: 1.75; color: rgba(26,26,24,.72); }
+    .faq__item[open] .faq__a { animation: faqReveal .45s var(--ease); }
+    @keyframes faqReveal { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { .faq__item[open] .faq__a { animation: none; } }
+    .faq__cta { text-align: center; margin-top: clamp(2.5rem, 6vh, 4rem); }
+    .faq__cta p { color: rgba(26,26,24,.7); margin-bottom: 1rem; }
 
     /* ============================================================
        13. FOOTER
@@ -1623,6 +1703,63 @@
               <div class="distances__item"><span class="distances__place">Venezia</span><span class="distances__val">100 km · 2 h</span></div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 12b. FAQ (BOZZA — non pubblicata) ===================== -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="faq__head" data-fade>
+          <p class="label">Domande frequenti</p>
+          <h2 data-words>Tutto quello che serve sapere</h2>
+        </div>
+
+        <div class="faq__list" data-fade>
+          <details class="faq__item">
+            <summary class="faq__q">A che ora sono il check-in e il check-out?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>Il check-in si effettua dalle 15:00, mentre il check-out è fino alle 10:00. Arrivate in orari diversi? Scriveteci o chiamateci in anticipo: troveremo sempre una soluzione per accogliervi con calma.</p></div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">La colazione è inclusa?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>Sì. Ogni mattina vi aspetta la nostra «Breakfast at Beatilla»: torte fatte in casa, pane fresco, marmellate e prodotti del territorio, serviti nella sala luminosa o in giardino quando il tempo lo permette.</p></div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">C'è il parcheggio?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>Sì. Il parcheggio privato è disponibile gratuitamente in loco e non necessita di prenotazione. C'è spazio comodo per auto, moto e biciclette.</p></div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">Il ristorante è aperto anche a chi non alloggia?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>La nostra cucina mantovana è aperta su prenotazione. Vi consigliamo di chiamarci in anticipo per riservare il tavolo e raccontarci eventuali esigenze o intolleranze.</p></div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">È adatto a famiglie con bambini?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>Assolutamente sì. Disponiamo di lettini per i più piccoli, di un giardino con area giochi e di tanto spazio all'aperto. La fattoria e gli animali sono sempre un'attrazione per i bambini.</p></div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">Sono ammessi gli animali domestici?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>I vostri amici a quattro zampe sono benvenuti. Vi chiediamo solo di segnalarcelo al momento della prenotazione, così da preparare al meglio la vostra sistemazione.</p></div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">Dove si trova Beatilla e quanto dista dalle città?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>Siamo a soli 2,2 km dal centro di Marmirolo e a 5 km dal centro storico di Mantova (circa 5 minuti). Il Lago di Garda dista 25 km (circa 30 minuti). Una posizione ideale per visitare la città d'arte e rilassarsi in campagna.</p></div>
+          </details>
+
+          <details class="faq__item">
+            <summary class="faq__q">Noleggiate biciclette?<span class="faq__icon" aria-hidden="true"></span></summary>
+            <div class="faq__a"><p>Sì, mettiamo a disposizione delle biciclette per esplorare le campagne, il Bosco della Fontana e le piste ciclabili che conducono fino a Mantova.</p></div>
+          </details>
+        </div>
+
+        <div class="faq__cta" data-fade>
+          <p>Non avete trovato la risposta che cercavate?</p>
+          <a class="link-more" href="tel:+390376466480">Chiamateci allo 0376 466480 <span>&rarr;</span></a>
         </div>
       </div>
     </section>
